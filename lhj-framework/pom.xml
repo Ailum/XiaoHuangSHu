@@ -1,0 +1,31 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+<!--   指定父项目-->
+    <parent>
+        <groupId>com.lhj</groupId>
+        <artifactId>xiaohuangshu</artifactId>
+        <version>0.0.1-SNAPSHOT</version>
+        <relativePath>../pom.xml</relativePath>
+    </parent>
+
+    <artifactId>lhj-framework</artifactId>
+<!--多模块打包方式为pom-->
+    <packaging>pom</packaging>
+
+    <name>lhj-framework</name>
+    <description>平台基础设施层：封装一些常用功能，供各个业委线拿来即用</description>
+    <url>http://maven.apache.org</url>
+
+    <properties>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+    </properties>
+
+    <modules>
+<!--通用工具模块-->
+        <module>lhj-common</module>
+<!--接口日志组件-->
+        <module>lhj-spring-boot-starter-biz-operationlog</module>
+        <module>lhj-spring-boot-starter-jackson</module>
+    </modules>
+</project>

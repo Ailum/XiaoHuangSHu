@@ -1,0 +1,11 @@
+2026-04-03 10:13:03.597 [main] INFO  c.lhj.xiaohuangshuauth.TreadPoolTaskExecutorTests - Starting TreadPoolTaskExecutorTests using Java 21.0.10 with PID 133112 (started by LHJ-PC in H:\MyNewProject\xiaohuangshu\xiaohuangshu-auth)
+2026-04-03 10:13:03.598 [main] INFO  c.lhj.xiaohuangshuauth.TreadPoolTaskExecutorTests - The following 1 profile is active: "dev"
+2026-04-03 10:13:04.331 [main] INFO  o.s.d.r.config.RepositoryConfigurationDelegate - Multiple Spring Data modules found, entering strict repository configuration mode
+2026-04-03 10:13:04.333 [main] INFO  o.s.d.r.config.RepositoryConfigurationDelegate - Bootstrapping Spring Data Redis repositories in DEFAULT mode.
+2026-04-03 10:13:04.361 [main] INFO  o.s.d.r.config.RepositoryConfigurationDelegate - Finished Spring Data repository scanning in 13 ms. Found 0 Redis repository interfaces.
+2026-04-03 10:13:05.929 [main] INFO  c.a.d.s.b.a.DruidDataSourceAutoConfigure - Init DruidDataSource
+2026-04-03 10:13:06.579 [main] INFO  com.alibaba.druid.pool.DruidDataSource - {dataSource-1} inited
+2026-04-03 10:13:07.166 [main] INFO  c.lhj.xiaohuangshuauth.TreadPoolTaskExecutorTests - Started TreadPoolTaskExecutorTests in 3.967 seconds (process running for 4.93)
+2026-04-03 10:13:07.971 [AuthExecutor-1] INFO  c.lhj.xiaohuangshuauth.TreadPoolTaskExecutorTests - 异步线程中说：小皇书
+2026-04-03 10:13:08.001 [SpringApplicationShutdownHook] INFO  com.alibaba.druid.pool.DruidDataSource - {dataSource-1} closing ...
+2026-04-03 10:13:08.017 [SpringApplicationShutdownHook] INFO  com.alibaba.druid.pool.DruidDataSource - {dataSource-1} closed

@@ -1,6 +1,9 @@
 package com.lhj.xiaohuangshuauth.domain.mapper;
 
 import com.lhj.xiaohuangshuauth.domain.dataobject.RolePermissionDO;
+import org.apache.ibatis.annotations.Param;
+
+import java.util.List;
 
 public interface RolePermissionDOMapper {
     int deleteByPrimaryKey(Long id);
@@ -14,4 +17,6 @@ public interface RolePermissionDOMapper {
     int updateByPrimaryKeySelective(RolePermissionDO row);
 
     int updateByPrimaryKey(RolePermissionDO row);
+
+    List<RolePermissionDO> selectByRoleIds(@Param("roleIds") List<Long> roleIds);
 }

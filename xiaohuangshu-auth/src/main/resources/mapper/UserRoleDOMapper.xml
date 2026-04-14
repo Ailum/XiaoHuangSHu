@@ -18,6 +18,15 @@
     from t_user_role_rel
     where id = #{id,jdbcType=BIGINT}
   </select>
+  <select id="selectByUserIdAndRoleId" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from t_user_role_rel
+    where user_id = #{param1,jdbcType=BIGINT}
+      and role_id = #{param2,jdbcType=BIGINT}
+      and is_deleted = 0
+    limit 1
+  </select>
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
     delete from t_user_role_rel
     where id = #{id,jdbcType=BIGINT}

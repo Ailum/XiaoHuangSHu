@@ -11,6 +11,8 @@ public interface UserRoleDOMapper {
 
     UserRoleDO selectByPrimaryKey(Long id);
 
+    UserRoleDO selectByUserIdAndRoleId(Long userId, Long roleId);
+
     int updateByPrimaryKeySelective(UserRoleDO row);
 
     int updateByPrimaryKey(UserRoleDO row);

@@ -10,7 +10,7 @@ public class RedisKeyConstants {
     }
 
    //小皇书全局id生成器
-   public static final String XIAOHUANGSHU_ID_GENERATOR_KEY = "XiaoHuangShu_Id+Generator:";
+   public static final String XIAOHUANGSHU_ID_GENERATOR_KEY = "xiaohuangshu.id.generator";
 
    private  static final String USER_ROLES_KEY_PREFIX = "user:roles:";
 

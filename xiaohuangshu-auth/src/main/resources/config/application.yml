@@ -24,3 +24,7 @@ sa-token:
   token-style: uuid
   #是否输出操作日志
   is-log: true
+
+rate-limit:
+  api:
+    limit: 100 #接口限流阈值

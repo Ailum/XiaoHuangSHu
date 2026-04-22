@@ -10,7 +10,7 @@
 
     <groupId>com.lhj</groupId>
   <artifactId>xiaohuangshu</artifactId>
-  <version>${revision}</version>
+  <version>0.0.1-SNAPSHOT</version>
     <!--    多模块打包方式为pom-->
   <packaging>pom</packaging>
       <!--项目名称-->
@@ -178,6 +178,13 @@
           <groupId>com.alibaba.cloud</groupId>
           <artifactId>spring-cloud-starter-alibaba-nacos-discovery</artifactId>
           <version>${spring-cloud-alibaba.version}</version>
+      </dependency>
+
+<!--      saToken整合网关-->
+      <dependency>
+          <groupId>cn.dev33</groupId>
+          <artifactId>sa-token-reactor-spring-boot3-starter</artifactId>
+          <version>${sa-token.version}</version>
       </dependency>
   </dependencies>
 </dependencyManagement>

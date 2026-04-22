@@ -25,4 +25,11 @@ public class UserController {
     public Response<String> loginAndRegister(@Validated @RequestBody UserLoginReqVO userLoginReqVO) {
         return userService.loginAndRegister(userLoginReqVO);
     }
+
+    @PostMapping("/logout")
+    @ApiOperationLog(description = "账号登出")
+    public Response<String> logout() {
+        //todo 账号退出登录逻辑待实现
+        return Response.success();
+    }
 }

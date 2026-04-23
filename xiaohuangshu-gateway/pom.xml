@@ -16,6 +16,10 @@
     <description>网关服务（负责路由转发、接口鉴权等功能）</description>
 
     <dependencies>
+        <dependency>
+            <groupId>com.lhj.framework</groupId>
+            <artifactId>lhj-common</artifactId>
+        </dependency>
      <!--网关-->
         <dependency>
             <groupId>org.springframework.cloud</groupId>
@@ -40,6 +44,21 @@
         <dependency>
             <groupId>cn.dev33</groupId>
             <artifactId>sa-token-reactor-spring-boot3-starter</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>cn.dev33</groupId>
+            <artifactId>sa-token-redis-jackson</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-data-redis</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>org.apache.commons</groupId>
+            <artifactId>commons-pool2</artifactId>
         </dependency>
 
         <dependency>

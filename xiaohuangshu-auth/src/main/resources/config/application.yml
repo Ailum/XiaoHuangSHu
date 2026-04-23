@@ -27,13 +27,14 @@ mybatis:
   mapper-locations: classpath:/mapper/**/*.xml
 
 sa-token:
-  token-name: satoken
+  token-name: Authorization #token名称 也是cookie名称
   timeout: 2592000
   active-timeout: -1
   is-concurrent: true
   is-share: true
-  token-style: uuid
+  token-style: random-128
   is-log: true
+  token-prefix: Bearer #token前缀
 
 alarm:
   type: sms

@@ -180,11 +180,25 @@
           <version>${spring-cloud-alibaba.version}</version>
       </dependency>
 
-<!--      saToken整合网关-->
+<!--saToken整合网关-->
       <dependency>
           <groupId>cn.dev33</groupId>
           <artifactId>sa-token-reactor-spring-boot3-starter</artifactId>
           <version>${sa-token.version}</version>
+      </dependency>
+
+<!--Redis-->
+      <dependency>
+          <groupId>org.springframework.boot</groupId>
+          <artifactId>spring-boot-starter-data-redis</artifactId>
+          <version>3.2.4</version>
+      </dependency>
+
+<!-- Jackson组件-->
+      <dependency>
+          <groupId>com.lhj.framework.jackson</groupId>
+          <artifactId>lhj-spring-boot-starter-jackson</artifactId>
+          <version>0.0.1-SNAPSHOT</version>
       </dependency>
   </dependencies>
 </dependencyManagement>

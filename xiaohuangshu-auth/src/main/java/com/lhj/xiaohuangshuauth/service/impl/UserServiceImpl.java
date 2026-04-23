@@ -28,6 +28,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.support.TransactionTemplate;
 
 import java.time.LocalDateTime;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
@@ -49,6 +50,7 @@ public class UserServiceImpl implements UserService {
 
     @Resource
     private TransactionTemplate transactionTemplate;
+
 
     @Override
     public Response<String> loginAndRegister(UserLoginReqVO userLoginReqVO) {
@@ -126,7 +128,13 @@ public class UserServiceImpl implements UserService {
                 }
 
                 createDefaultRoleRelation(userId, now);
-                cacheDefaultRole(phone);
+                RoleDO roleDO = roleDOMapper.selectByPrimaryKey(RoleConstants.COMMON_USER_ROLE_ID);
+                // 将该用户的角色 ID 存入 Redis 中，指定初始容量为 1，这样可以减少在扩容时的性能开销
+                List<String> roles = new ArrayList<>();
+                roles.add(roleDO.getRoleKey());
+
+                String userRolesKey = RedisKeyConstants.buildUserRoleKey(userId);
+                redisTemplate.opsForValue().set(userRolesKey, JsonUtils.toJsonString(roles));
                 return userId;
             } catch (RuntimeException e) {
                 status.setRollbackOnly();
@@ -144,7 +152,16 @@ public class UserServiceImpl implements UserService {
         if (userRoleDO == null) {
             createDefaultRoleRelation(userId, LocalDateTime.now());
         }
-        cacheDefaultRole(phone);
+        RoleDO roleDO = roleDOMapper.selectByPrimaryKey(RoleConstants.COMMON_USER_ROLE_ID);
+        if (roleDO == null) {
+            throw new BizException(ResponseCodeEnum.SYSTEM_ERROR.getErrorCode(), "默认角色不存在，请先初始化 t_role 表");
+        }
+
+        List<String> roles = new ArrayList<>();
+        roles.add(roleDO.getRoleKey());
+
+        String userRolesKey = RedisKeyConstants.buildUserRoleKey(userId);
+        redisTemplate.opsForValue().set(userRolesKey, JsonUtils.toJsonString(roles));
     }
 
     private void createDefaultRoleRelation(Long userId, LocalDateTime now) {
@@ -163,9 +180,5 @@ public class UserServiceImpl implements UserService {
         userRoleDOMapper.insertSelective(userRoleDO);
     }
 
-    private void cacheDefaultRole(String phone) {
-        List<Long> roles = Lists.newArrayList(RoleConstants.COMMON_USER_ROLE_ID);
-        String userRolesKey = RedisKeyConstants.buildUserRoleKey(phone);
-        redisTemplate.opsForValue().set(userRolesKey, JsonUtils.toJsonString(roles));
-    }
+
 }

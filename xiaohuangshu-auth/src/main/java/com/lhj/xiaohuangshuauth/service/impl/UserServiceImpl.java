@@ -3,6 +3,7 @@ package com.lhj.xiaohuangshuauth.service.impl;
 import cn.dev33.satoken.stp.SaTokenInfo;
 import cn.dev33.satoken.stp.StpUtil;
 import com.google.common.collect.Lists;
+import com.lhj.framework.biz.context.holder.LoginUserContextHolder;
 import com.lhj.framework.common.enums.DeletedEnum;
 import com.lhj.framework.common.enums.StatusEnum;
 import com.lhj.framework.common.exception.BizException;
@@ -18,13 +19,14 @@ import com.lhj.xiaohuangshuauth.domain.mapper.UserDOMapper;
 import com.lhj.xiaohuangshuauth.domain.mapper.UserRoleDOMapper;
 import com.lhj.xiaohuangshuauth.enums.LoginTypeEnum;
 import com.lhj.xiaohuangshuauth.enums.ResponseCodeEnum;
-import com.lhj.xiaohuangshuauth.filter.LoginUserContextHolder;
 import com.lhj.xiaohuangshuauth.model.vo.veriticationcode.user.UserLoginReqVO;
 import com.lhj.xiaohuangshuauth.service.UserService;
 import jakarta.annotation.Resource;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang3.StringUtils;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.redis.core.RedisTemplate;
+import org.springframework.scheduling.concurrent.ThreadPoolTaskExecutor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.support.TransactionTemplate;
 
@@ -51,6 +53,8 @@ public class UserServiceImpl implements UserService {
 
     @Resource
     private TransactionTemplate transactionTemplate;
+    @Autowired
+    private ThreadPoolTaskExecutor threadPoolTaskExecutor;
 
 
     @Override
@@ -112,6 +116,11 @@ public class UserServiceImpl implements UserService {
         Long userId = LoginUserContextHolder.getUserId();
 
         log.info("==> 用户退出登录，userId:{}", userId);
+
+        threadPoolTaskExecutor.submit(() -> {
+           Long userId2 = LoginUserContextHolder.getUserId();
+           log.info("==> 异步线程中获取 userId2:{}", userId2);
+        });
         // 退出登录 (指定用户 ID)
         StpUtil.logout(userId);
 

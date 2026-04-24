@@ -178,6 +178,11 @@
       <artifactId>lhj-common</artifactId>
     </dependency>
     <dependency>
+      <groupId>com.lhj.framework.biz.context</groupId>
+      <artifactId>lhj-spring-boot-starter-biz-context</artifactId>
+      <version>0.0.1-SNAPSHOT</version>
+    </dependency>
+    <dependency>
       <groupId>com.lhj.framework.jackson</groupId>
       <artifactId>lhj-spring-boot-starter-jackson</artifactId>
       <version>0.0.1-SNAPSHOT</version>
@@ -219,11 +224,13 @@
       <artifactId>guava</artifactId>
       <version>33.0.0-jre</version>
     </dependency>
+
     <dependency>
       <groupId>cn.hutool</groupId>
       <artifactId>hutool-all</artifactId>
       <version>5.8.26</version>
     </dependency>
+
     <dependency>
       <groupId>org.apache.commons</groupId>
       <artifactId>commons-lang3</artifactId>
@@ -234,27 +241,30 @@
       <artifactId>dypnsapi20170525</artifactId>
       <version>2.0.0</version>
     </dependency>
+      <!-- Sa-Token 整合 Redis （使用 jackson 序列化方式） -->
     <dependency>
       <groupId>cn.dev33</groupId>
       <artifactId>sa-token-redis-jackson</artifactId>
       <version>1.38.0</version>
     </dependency>
+
     <dependency>
       <groupId>org.apache.commons</groupId>
       <artifactId>commons-pool2</artifactId>
     </dependency>
+
     <dependency>
       <groupId>com.alibaba.cloud</groupId>
       <artifactId>spring-cloud-starter-alibaba-nacos-discovery</artifactId>
       <version>2023.0.1.0</version>
     </dependency>
+
     <dependency>
       <groupId>com.alibaba.cloud</groupId>
       <artifactId>spring-cloud-starter-alibaba-nacos-config</artifactId>
       <version>2023.0.1.0</version>
     </dependency>
-    <!-- Sa-Token 权限认证，在线文档：https://sa-token.cc -->
-    <!-- Sa-Token 整合 Redis （使用 jackson 序列化方式） -->
+
     <!-- 提供Redis连接池 -->
   </dependencies>
   <build>

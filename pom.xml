@@ -55,6 +55,7 @@
       <dypnsapi.version>2.0.0</dypnsapi.version>
       <spring-cloud.version>2023.0.1</spring-cloud.version>
       <spring-cloud-alibaba.version>2023.0.1.0</spring-cloud-alibaba.version>
+      <transmittable-thread-local.version>2.14.2</transmittable-thread-local.version>
   </properties>
 
 <!--统一依赖管理-->
@@ -102,6 +103,12 @@
       </dependency>
 
 <!--业务接口日志组件-->
+      <dependency>
+          <groupId>com.lhj.framework.biz.context</groupId>
+          <artifactId>lhj-spring-boot-starter-biz-context</artifactId>
+          <version>${revision}</version>
+      </dependency>
+
       <dependency>
           <groupId>com.lhj.framework.biz.operationlog</groupId>
           <artifactId>lhj-spring-boot-starter-biz-operationlog</artifactId>
@@ -199,6 +206,13 @@
           <groupId>com.lhj.framework.jackson</groupId>
           <artifactId>lhj-spring-boot-starter-jackson</artifactId>
           <version>0.0.1-SNAPSHOT</version>
+      </dependency>
+
+<!--统一依赖管理-->
+      <dependency>
+          <groupId>com.alibaba</groupId>
+          <artifactId>transmittable-thread-local</artifactId>
+          <version>${transmittable-thread-local.version}</version>
       </dependency>
   </dependencies>
 </dependencyManagement>

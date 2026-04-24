@@ -18,6 +18,7 @@ import com.lhj.xiaohuangshuauth.domain.mapper.UserDOMapper;
 import com.lhj.xiaohuangshuauth.domain.mapper.UserRoleDOMapper;
 import com.lhj.xiaohuangshuauth.enums.LoginTypeEnum;
 import com.lhj.xiaohuangshuauth.enums.ResponseCodeEnum;
+import com.lhj.xiaohuangshuauth.filter.LoginUserContextHolder;
 import com.lhj.xiaohuangshuauth.model.vo.veriticationcode.user.UserLoginReqVO;
 import com.lhj.xiaohuangshuauth.service.UserService;
 import jakarta.annotation.Resource;
@@ -99,6 +100,22 @@ public class UserServiceImpl implements UserService {
         Long userId = userDO.getId();
         ensureDefaultRole(userId, phone);
         return userId;
+    }
+
+    /**
+     * 退出登录
+     *
+     * @return
+     */
+    @Override
+    public Response<?> logout() {
+        Long userId = LoginUserContextHolder.getUserId();
+
+        log.info("==> 用户退出登录，userId:{}", userId);
+        // 退出登录 (指定用户 ID)
+        StpUtil.logout(userId);
+
+        return Response.success();
     }
 
     private Long failParam(String message) {

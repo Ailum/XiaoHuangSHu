@@ -64,6 +64,6 @@ public class StpInterfaceImpl implements StpInterface {
         //todo 从redis获取
 
 
-//        return Collections.emptyList();
+
     }
 }

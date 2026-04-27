@@ -10,6 +10,8 @@ import com.lhj.xiaohuangshuauth.service.VerificationCodeService;
 import com.lhj.xiaohuangshuauth.sms.AliyunSmsHelper;
 import jakarta.annotation.Resource;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.scheduling.concurrent.ThreadPoolTaskExecutor;
 import org.springframework.stereotype.Service;
@@ -23,7 +25,8 @@ public class VerificationCodeServiceImpl implements VerificationCodeService {
     @Resource
     private RedisTemplate<String, Object> redisTemplate;
 
-    @Resource(name = "taskExecutor")
+    @Autowired
+    @Qualifier("taskExecutor")
     private ThreadPoolTaskExecutor threadPoolTaskExecutor;
 
     @Resource

@@ -2,6 +2,7 @@ package com.lhj.xiaohuangshuauth.controller;
 
 import com.lhj.framework.biz.operationlog.aspect.ApiOperationLog;
 import com.lhj.framework.common.response.Response;
+import com.lhj.xiaohuangshuauth.model.vo.veriticationcode.user.UpdatePasswordReqVO;
 import com.lhj.xiaohuangshuauth.model.vo.veriticationcode.user.UserLoginReqVO;
 import com.lhj.xiaohuangshuauth.service.UserService;
 import jakarta.annotation.Resource;
@@ -30,5 +31,10 @@ public class UserController {
       return userService.logout();
     }
 
+    @PostMapping("/password/update")
+    @ApiOperationLog(description = "修改密码")
+    public Response<?> updatePassword(@Validated @RequestBody UpdatePasswordReqVO updatePasswordReqVO) {
+        return userService.updatePassword(updatePasswordReqVO);
+    }
 
 }

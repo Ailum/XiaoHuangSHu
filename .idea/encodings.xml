@@ -14,5 +14,9 @@
     <file url="file://$PROJECT_DIR$/xianghuangshu-auth/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/xiaohuangshu-auth/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/xiaohuangshu-gateway/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/xiaohuangshu-oss/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/xiaohuangshu-oss/src/main/resources" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/xiaohuangshu-oss/xiaohuangshu-oss-api/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/xiaohuangshu-oss/xiaohuangshu-oss-biz/src/main/java" charset="UTF-8" />
   </component>
 </project>

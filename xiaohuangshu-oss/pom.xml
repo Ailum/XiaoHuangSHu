@@ -1,0 +1,38 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+<!--    指定父项目-->
+    <parent>
+        <groupId>com.lhj</groupId>
+        <artifactId>xiaohuangshu</artifactId>
+        <version>0.0.1-SNAPSHOT</version>
+    </parent>
+
+    <artifactId>xiaohuangshu-oss</artifactId>
+<!--    多模块项目打包方式是pom-->
+    <packaging>pom</packaging>
+<!--    子模块管理-->
+    <modules>
+
+        <module>xiaohuangshu-oss-api</module>
+        <module>xiaohuangshu-oss-biz</module>
+    </modules>
+    <!--项目名称-->
+    <name>xiaohuangshu-oss</name>
+<!--    项目描述-->
+    <description>对象存储服务</description>
+    <url>http://maven.apache.org</url>
+
+    <properties>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+    </properties>
+
+    <dependencies>
+        <dependency>
+            <groupId>junit</groupId>
+            <artifactId>junit</artifactId>
+            <version>3.8.1</version>
+            <scope>test</scope>
+        </dependency>
+    </dependencies>
+</project>

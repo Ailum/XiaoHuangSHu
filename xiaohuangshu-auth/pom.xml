@@ -265,7 +265,11 @@
       <version>2023.0.1.0</version>
     </dependency>
 
-    <!-- 提供Redis连接池 -->
+<!--密码加密-->
+      <dependency>
+          <groupId>org.springframework.security</groupId>
+          <artifactId>spring-security-crypto</artifactId>
+      </dependency>
   </dependencies>
   <build>
     <plugins>

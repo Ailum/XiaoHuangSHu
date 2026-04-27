@@ -26,6 +26,8 @@
         <module>lhj-framework</module>
 <!--        Gateway网关服务-->
         <module>xiaohuangshu-gateway</module>
+<!--        对象存储服务-->
+        <module>xiaohuangshu-oss</module>
     </modules>
 
   <properties>

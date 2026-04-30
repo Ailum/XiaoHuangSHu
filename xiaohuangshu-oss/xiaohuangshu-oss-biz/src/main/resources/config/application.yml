@@ -1,6 +1,6 @@
 ﻿server:
   port: 8084 #项目启动端口
 
-spring:
-  profiles:
-    active: prod #默认激活 dev本地开发环境
+storage:
+  type: aliyun #对象存储类型
+  bucket-name: xiaohuangshu1

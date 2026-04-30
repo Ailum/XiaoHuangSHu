@@ -1,0 +1,14 @@
+spring:
+  application:
+    name: xiaohuangshu-oss
+  profiles:
+    active: dev
+  cloud:
+    nacos:
+      config:
+        server-addr: http://127.0.0.1:8848
+        prefix: ${spring.application.name}
+        group: DEFAULT_GROUP
+        namespace: xiaohuangshu
+        file-extension: yaml
+        refresh-enabled: true

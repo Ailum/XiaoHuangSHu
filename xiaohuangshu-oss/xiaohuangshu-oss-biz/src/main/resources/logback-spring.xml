@@ -48,6 +48,7 @@
     <springProfile name="prod">
         <include resource="org/springframework/boot/logging/logback/console-appender.xml" />
         <root level="INFO">
+            <appender-ref ref="CONSOLE"/><!--输出控制台日志，方便本地调试文件上传-->
             <appender-ref ref="FILE"/> <!-- 生产环境下，仅打印日志到文件中 -->
         </root>
     </springProfile>

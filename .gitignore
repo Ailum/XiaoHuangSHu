@@ -39,3 +39,38 @@ build/
 .DS_Store
 
 effective-*.xml
+
+### Local environment / secrets ###
+.env
+.env.*
+!.env.example
+*.local
+*.local.*
+application-local.yml
+application-local.yaml
+application-local.properties
+**/application-local.yml
+**/application-local.yaml
+**/application-local.properties
+**/application-dev.yml
+**/application-dev.yaml
+**/generatorConfig.xml
+
+### Logs ###
+logs/
+*.log
+
+### Private keys / certificates ###
+*.pem
+*.key
+*.p12
+*.pfx
+*.jks
+*.keystore
+
+### IntelliJ private workspace data ###
+.idea/workspace.xml
+.idea/tasks.xml
+.idea/dataSources/
+.idea/dataSources.local.xml
+.idea/httpRequests/

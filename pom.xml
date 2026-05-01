@@ -28,6 +28,8 @@
         <module>xiaohuangshu-gateway</module>
 <!--        对象存储服务-->
         <module>xiaohuangshu-oss</module>
+<!--        用户服务-->
+        <module>xiaohuangshu-user</module>
     </modules>
 
   <properties>

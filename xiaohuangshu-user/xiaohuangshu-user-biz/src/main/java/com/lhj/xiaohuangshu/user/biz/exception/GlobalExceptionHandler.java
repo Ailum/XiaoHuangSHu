@@ -1,9 +1,8 @@
-package com.lhj.xiaohuangshu.oss.biz.exception;
-
+package com.lhj.xiaohuangshu.user.biz.exception;
 
 import com.lhj.framework.common.exception.BizException;
 import com.lhj.framework.common.response.Response;
-import com.lhj.xiaohuangshu.oss.biz.enums.ResponseCodeEnum;
+import com.lhj.xiaohuangshu.user.biz.enums.ResponseCodeEnum;
 import jakarta.servlet.http.HttpServletRequest;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.validation.BindingResult;

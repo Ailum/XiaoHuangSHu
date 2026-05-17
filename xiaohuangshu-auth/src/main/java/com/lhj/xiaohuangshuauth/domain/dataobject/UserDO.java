@@ -34,7 +34,7 @@ public class UserDO {
 
     private Integer status;
 
-    private Integer introduction;
+    private String introduction;
 
     private LocalDateTime createTime;
 

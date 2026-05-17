@@ -1,5 +1,6 @@
 package com.lhj.xiaohuangshu.oss.biz.controller;
 
+import com.lhj.framework.biz.context.holder.LoginUserContextHolder;
 import com.lhj.framework.common.response.Response;
 import com.lhj.xiaohuangshu.oss.biz.service.FileService;
 import jakarta.annotation.Resource;
@@ -20,7 +21,9 @@ public class FileController {
 
     @PostMapping("/upload")
     public Response<?> updateFile(@RequestParam("file") MultipartFile file) {
-        log.info("## 接收到文件上传请求, 文件名: {}, 文件大小: {} bytes", file.getOriginalFilename(), file.getSize());
+        log.info("当前用户 ID: {}", LoginUserContextHolder.getUserId());
+
+
         return fileService.uploadFile(file);
     }
 }

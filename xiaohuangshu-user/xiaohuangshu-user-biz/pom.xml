@@ -52,7 +52,6 @@
         <dependency>
             <groupId>org.mybatis.spring.boot</groupId>
             <artifactId>mybatis-spring-boot-starter</artifactId>
-            <version>4.0.1</version>
         </dependency>
 
 <!--        Mysql驱动-->
@@ -66,6 +65,41 @@
         <dependency>
             <groupId>com.alibaba</groupId>
             <artifactId>druid-spring-boot-3-starter</artifactId>
+        </dependency>
+
+<!--        业务接口日志组件-->
+        <dependency>
+            <groupId>com.lhj.framework.biz.operationlog</groupId>
+            <artifactId>lhj-spring-boot-starter-biz-operationlog</artifactId>
+        </dependency>
+
+<!--        上下文组件-->
+        <dependency>
+            <groupId>com.lhj.framework.biz.context</groupId>
+            <artifactId>lhj-spring-boot-starter-biz-context</artifactId>
+        </dependency>
+
+<!--        Jackson组件-->
+        <dependency>
+            <groupId>com.lhj.framework.jackson</groupId>
+            <artifactId>lhj-spring-boot-starter-jackson</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>com.lhj.xiaohuangshu.oss</groupId>
+            <artifactId>xiaohuangshu-oss-api</artifactId>
+        </dependency>
+
+<!--        Feign表单提交-->
+        <dependency>
+            <groupId>io.github.openfeign.form</groupId>
+            <artifactId>feign-form-spring</artifactId>
+            <version>3.8.0</version>
+        </dependency>
+        <dependency>
+            <groupId>io.github.openfeign.form</groupId>
+            <artifactId>feign-form</artifactId>
+            <version>3.8.0</version>
         </dependency>
     </dependencies>
 

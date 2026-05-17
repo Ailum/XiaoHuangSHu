@@ -23,12 +23,12 @@ public class SaTokenConfigure {
                     log.info("==================> SaReactorFilter, Path: {}", SaHolder.getRequest().getRequestPath());
 
                     SaRouter.match("/**")
-                            .notMatch("/auth/user/login")
+                            .notMatch("/auth/login")
                             .notMatch("/auth/verification/code/send")
                             .check(r -> StpUtil.checkLogin());
 
-          //          SaRouter.match("/auth/user/logout", r -> StpUtil.checkRole("admin"));
-            //       SaRouter.match("/auth/user/logout", r -> StpUtil.checkPermission("app:note:publish"));
+                 SaRouter.match("/auth/logout", r -> StpUtil.checkRole("admin"));
+            //       SaRouter.match("/auth/logout", r -> StpUtil.checkPermission("app:note:publish"));
 //                    SaRouter.match("/goods/**", r -> StpUtil.checkPermission("goods"));
 //                    SaRouter.match("/orders/**", r -> StpUtil.checkPermission("orders"));
                 })

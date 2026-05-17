@@ -65,6 +65,7 @@
       <jaxb-api.version>2.3.1</jaxb-api.version>
       <activation.version>1.1.1</activation.version>
       <jaxb-runtime.version>2.3.3</jaxb-runtime.version>
+      <feign-form.version>3.8.0</feign-form.version>
   </properties>
 
 <!--统一依赖管理-->
@@ -210,13 +211,6 @@
           <version>3.2.4</version>
       </dependency>
 
-<!-- Jackson组件-->
-      <dependency>
-          <groupId>com.lhj.framework.jackson</groupId>
-          <artifactId>lhj-spring-boot-starter-jackson</artifactId>
-          <version>0.0.1-SNAPSHOT</version>
-      </dependency>
-
 <!--ThreadLocal-->
       <dependency>
           <groupId>com.alibaba</groupId>
@@ -254,6 +248,19 @@
           <artifactId>jaxb-runtime</artifactId>
           <version>${jaxb-runtime.version}</version>
       </dependency>
+
+      <dependency>
+          <groupId>com.lhj.xiaohuangshu.oss</groupId>
+          <artifactId>xiaohuangshu-oss-api</artifactId>
+          <version>0.0.1-SNAPSHOT</version>
+      </dependency>
+<!--      Feign表单提交-->
+      <dependency>
+          <groupId>io.github.openfeign.form</groupId>
+          <artifactId>feign-form</artifactId>
+          <version>3.8.0</version>
+      </dependency>
+
   </dependencies>
 </dependencyManagement>
 

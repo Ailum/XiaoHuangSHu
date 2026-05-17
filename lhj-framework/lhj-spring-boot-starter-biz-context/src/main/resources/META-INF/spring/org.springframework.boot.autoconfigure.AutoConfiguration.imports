@@ -1,1 +1,2 @@
 com.lhj.framework.biz.context.config.ContextAutoConfiguration
+com.lhj.framework.biz.context.config.FeignContextAutoConfiguration

@@ -7,16 +7,16 @@ import lombok.extern.slf4j.Slf4j;
 public class SmsAlarmHelper implements AlarmInterface {
 
     /**
-     * 发送告警信息
+     * 鍙戦€佸憡璀︿俊鎭?
      *
      * @param message
      * @return
      */
     @Override
     public boolean send(String message) {
-        log.info("==> 【短信告警】：{}", message);
+        log.info("==> 銆愮煭淇″憡璀︺€戯細{}", message);
 
-        // 业务逻辑...
+        // 涓氬姟閫昏緫...
 
         return true;
     }

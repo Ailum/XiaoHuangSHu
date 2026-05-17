@@ -1,9 +1,7 @@
 package com.lhj.framework.biz.context.config;
 
 import com.lhj.framework.biz.context.filter.HeaderUserId2ContextFilter;
-import com.lhj.framework.biz.context.interceptor.FeignRequestInterceptor;
 import com.lhj.framework.biz.context.task.LoginUserTransmitTaskDecorator;
-import feign.RequestInterceptor;
 import org.springframework.boot.autoconfigure.AutoConfiguration;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnClass;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnMissingBean;
@@ -27,11 +25,5 @@ public class ContextAutoConfiguration {
     @ConditionalOnMissingBean
     public TaskDecorator loginUserTransmitTaskDecorator() {
         return new LoginUserTransmitTaskDecorator();
-    }
-
-    @Bean
-    @ConditionalOnMissingBean
-    public RequestInterceptor feignRequestInterceptor() {
-        return new FeignRequestInterceptor();
     }
 }

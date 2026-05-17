@@ -17,37 +17,37 @@ public class UpdateUserInfoReqVO {
 
 
     /**
-     * 头像
+     * 澶村儚
      */
     private MultipartFile avatar;
 
     /**
-     * 昵称
+     * 鏄电О
      */
     private String nickname;
 
     /**
-     * 小哈书 ID
+     * 灏忓搱涔?ID
      */
     private String xiaohuangshuId;
 
     /**
-     * 性别
+     * 鎬у埆
      */
     private Integer sex;
 
     /**
-     * 生日
+     * 鐢熸棩
      */
     private LocalDate birthday;
 
     /**
-     * 个人介绍
+     * 涓汉浠嬬粛
      */
     private String introduction;
 
     /**
-     * 背景图
+     * 鑳屾櫙鍥?
      */
     private MultipartFile backgroundImg;
 

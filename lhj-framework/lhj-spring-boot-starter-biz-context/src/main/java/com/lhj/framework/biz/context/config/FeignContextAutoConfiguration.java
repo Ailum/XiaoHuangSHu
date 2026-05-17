@@ -1,16 +1,22 @@
 package com.lhj.framework.biz.context.config;
 
 import com.lhj.framework.biz.context.interceptor.FeignRequestInterceptor;
+import feign.RequestInterceptor;
 import org.springframework.boot.autoconfigure.AutoConfiguration;
+import org.springframework.boot.autoconfigure.condition.ConditionalOnClass;
+import org.springframework.boot.autoconfigure.condition.ConditionalOnMissingBean;
 import org.springframework.context.annotation.Bean;
 
 /**
- * @description: Feign 请求拦截器自动配置
+ * @description: Feign request interceptor auto configuration
  */
 @AutoConfiguration
+@ConditionalOnClass(RequestInterceptor.class)
 public class FeignContextAutoConfiguration {
+
     @Bean
-    public FeignRequestInterceptor feignRequestInterceptor(){
+    @ConditionalOnMissingBean(RequestInterceptor.class)
+    public RequestInterceptor feignRequestInterceptor() {
         return new FeignRequestInterceptor();
     }
 }

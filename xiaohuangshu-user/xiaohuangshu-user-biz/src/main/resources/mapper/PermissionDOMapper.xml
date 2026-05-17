@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.lhj.xiaohuangshuauth.domain.mapper.PermissionDOMapper">
-  <resultMap id="BaseResultMap" type="com.lhj.xiaohuangshuauth.domain.dataobject.PermissionDO">
+<mapper namespace="com.lhj.xiaohuangshu.user.biz.domain.dataobject.mapper.PermissionDOMapper">
+  <resultMap id="BaseResultMap" type="com.lhj.xiaohuangshu.user.biz.domain.dataobject.PermissionDO">
     <id column="id" jdbcType="BIGINT" property="id" />
     <result column="parent_id" jdbcType="BIGINT" property="parentId" />
     <result column="name" jdbcType="VARCHAR" property="name" />
@@ -34,7 +34,7 @@
     delete from t_permission
     where id = #{id,jdbcType=BIGINT}
   </delete>
-  <insert id="insert" parameterType="com.lhj.xiaohuangshuauth.domain.dataobject.PermissionDO">
+  <insert id="insert" parameterType="com.lhj.xiaohuangshu.user.biz.domain.dataobject.PermissionDO">
     insert into t_permission (id, parent_id, `name`,
       `type`, menu_url, menu_icon,
       sort, permission_key, `status`,
@@ -44,7 +44,7 @@
       #{sort,jdbcType=INTEGER}, #{permissionKey,jdbcType=VARCHAR}, #{status,jdbcType=TINYINT},
       #{createTime,jdbcType=TIMESTAMP}, #{updateTime,jdbcType=TIMESTAMP}, #{isDeleted,jdbcType=BIT})
   </insert>
-  <insert id="insertSelective" parameterType="com.lhj.xiaohuangshuauth.domain.dataobject.PermissionDO">
+  <insert id="insertSelective" parameterType="com.lhj.xiaohuangshu.user.biz.domain.dataobject.PermissionDO">
     insert into t_permission
     <trim prefix="(" suffix=")" suffixOverrides=",">
       <if test="id != null">id,</if>
@@ -75,7 +75,7 @@
       <if test="isDeleted != null">#{isDeleted,jdbcType=BIT},</if>
     </trim>
   </insert>
-  <update id="updateByPrimaryKeySelective" parameterType="com.lhj.xiaohuangshuauth.domain.dataobject.PermissionDO">
+  <update id="updateByPrimaryKeySelective" parameterType="com.lhj.xiaohuangshu.user.biz.domain.dataobject.PermissionDO">
     update t_permission
     <set>
       <if test="parentId != null">parent_id = #{parentId,jdbcType=BIGINT},</if>
@@ -92,7 +92,7 @@
     </set>
     where id = #{id,jdbcType=BIGINT}
   </update>
-  <update id="updateByPrimaryKey" parameterType="com.lhj.xiaohuangshuauth.domain.dataobject.PermissionDO">
+  <update id="updateByPrimaryKey" parameterType="com.lhj.xiaohuangshu.user.biz.domain.dataobject.PermissionDO">
     update t_permission
     set parent_id = #{parentId,jdbcType=BIGINT},
       `name` = #{name,jdbcType=VARCHAR},

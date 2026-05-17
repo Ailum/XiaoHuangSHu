@@ -8,9 +8,9 @@ import java.util.Objects;
 @Getter
 @AllArgsConstructor
 public enum LoginTypeEnum {
-    //验证码
+    //楠岃瘉鐮?
     VERIFICATION_CODE(1),
-    //密码
+    //瀵嗙爜
     PASSWORD(2);
 
     private final Integer value;

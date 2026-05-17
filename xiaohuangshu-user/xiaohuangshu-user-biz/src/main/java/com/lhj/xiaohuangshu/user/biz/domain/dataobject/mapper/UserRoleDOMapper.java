@@ -1,6 +1,6 @@
-package com.lhj.xiaohuangshuauth.domain.mapper;
+package com.lhj.xiaohuangshu.user.biz.domain.dataobject.mapper;
 
-import com.lhj.xiaohuangshuauth.domain.dataobject.UserRoleDO;
+import com.lhj.xiaohuangshu.user.biz.domain.dataobject.UserRoleDO;
 
 public interface UserRoleDOMapper {
     int deleteByPrimaryKey(Long id);

@@ -21,7 +21,7 @@ public class UserController {
     private UserService userService;
 
     /**
-     * 用户信息修改
+     * 鐢ㄦ埛淇℃伅淇敼
      *
      * @param updateUserInfoReqVO
      * @return

@@ -1,8 +1,8 @@
-package com.lhj.xiaohuangshuauth.runner;
+package com.lhj.xiaohuangshu.user.biz.runner;
 
-import com.lhj.xiaohuangshuauth.constant.RoleConstants;
-import com.lhj.xiaohuangshuauth.domain.dataobject.RoleDO;
-import com.lhj.xiaohuangshuauth.domain.mapper.RoleDOMapper;
+import com.lhj.xiaohuangshu.user.biz.constant.RoleConstants;
+import com.lhj.xiaohuangshu.user.biz.domain.dataobject.RoleDO;
+import com.lhj.xiaohuangshu.user.biz.domain.dataobject.mapper.RoleDOMapper;
 import jakarta.annotation.Resource;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.boot.ApplicationArguments;

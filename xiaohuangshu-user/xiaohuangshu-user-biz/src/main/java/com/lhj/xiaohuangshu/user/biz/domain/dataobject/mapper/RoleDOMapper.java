@@ -1,6 +1,6 @@
-package com.lhj.xiaohuangshuauth.domain.mapper;
+package com.lhj.xiaohuangshu.user.biz.domain.dataobject.mapper;
 
-import com.lhj.xiaohuangshuauth.domain.dataobject.RoleDO;
+import com.lhj.xiaohuangshu.user.biz.domain.dataobject.RoleDO;
 
 import java.util.List;
 
@@ -18,7 +18,7 @@ public interface RoleDOMapper {
     int updateByPrimaryKey(RoleDO row);
 
     /**
-     * 查询所有被启用的角色
+     * 鏌ヨ鎵€鏈夎鍚敤鐨勮鑹?
      *
      * @return
      */

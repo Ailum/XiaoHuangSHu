@@ -26,7 +26,7 @@ public class TestController {
 
     @GetMapping("/alarm")
     public String sendAlarm() {
-        alarm.send("系统出错了，你坝马上上线解决");
+        alarm.send("绯荤粺鍑洪敊浜嗭紝浣犲潩椹笂涓婄嚎瑙ｅ喅");
         return "alarm success";
     }
 }

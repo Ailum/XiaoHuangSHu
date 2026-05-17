@@ -14,14 +14,14 @@ public class OssRpcService {
     private FileFeignApi fileFeignApi;
 
     public String uploadFile(MultipartFile file) {
-        // 调用对象存储服务上传文件
+        // 璋冪敤瀵硅薄瀛樺偍鏈嶅姟涓婁紶鏂囦欢
         Response<?> response = fileFeignApi.uploadFile(file);
 
         if (!response.isSuccess()) {
             return null;
         }
 
-        // 返回图片访问链接
+        // 杩斿洖鍥剧墖璁块棶閾炬帴
         return (String) response.getData();
     }
 }

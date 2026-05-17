@@ -12,7 +12,8 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @Builder
 public class SendVerificationCodeReqVO {
-  @NotBlank(message = "手机号不能为空")
-  @PhoneNumber
+
+    @NotBlank(message = "手机号不能为空")
+    @PhoneNumber
     private String phone;
 }

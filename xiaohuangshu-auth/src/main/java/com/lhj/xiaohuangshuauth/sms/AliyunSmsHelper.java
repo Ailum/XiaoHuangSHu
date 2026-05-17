@@ -26,7 +26,7 @@ public class AliyunSmsHelper {
 
         try {
             log.info(
-                    "==> 开始短信发送 , phone: {}, signName: {}, templateCode: {}, templateParam: {}",
+                    "==> 寮€濮嬬煭淇″彂閫?, phone: {}, signName: {}, templateCode: {}, templateParam: {}",
                     phone,
                     signName,
                     templateCode,
@@ -34,10 +34,10 @@ public class AliyunSmsHelper {
             );
 
             SendSmsVerifyCodeResponse response = client.sendSmsVerifyCodeWithOptions(request, runtime);
-            log.info("==> 短信发送成功, response: {}", JsonUtils.toJsonString(response));
+            log.info("==> 鐭俊鍙戦€佹垚鍔? response: {}", JsonUtils.toJsonString(response));
             return true;
         } catch (Exception error) {
-            log.error("==> 短信发送错误: ", phone, error);
+            log.error("==> 鐭俊鍙戦€侀敊璇? ", phone, error);
             return false;
         }
     }

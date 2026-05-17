@@ -18,13 +18,13 @@ public class AlarmConfig {
     @Bean
     @RefreshScope
     public AlarmInterface alarmHelper() {
-        // 根据配置文件中的告警类型，初始化选择不同的告警实现类
+        // 鏍规嵁閰嶇疆鏂囦欢涓殑鍛婅绫诲瀷锛屽垵濮嬪寲閫夋嫨涓嶅悓鐨勫憡璀﹀疄鐜扮被
         if (StringUtils.equals("sms", alarmType)) {
             return new SmsAlarmHelper();
         } else if (StringUtils.equals("mail", alarmType)) {
             return new MailAlarmHelper();
         } else {
-            throw new IllegalArgumentException("错误的告警类型...");
+            throw new IllegalArgumentException("閿欒鐨勫憡璀︾被鍨?..");
         }
     }
 }

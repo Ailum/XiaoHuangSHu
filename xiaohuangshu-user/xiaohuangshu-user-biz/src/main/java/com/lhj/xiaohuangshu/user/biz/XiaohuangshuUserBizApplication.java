@@ -7,7 +7,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.cloud.openfeign.EnableFeignClients;
 
 @SpringBootApplication
-@MapperScan("com.lhj.xiaohuangshu.user.biz.domain.mapper")
+@MapperScan("com.lhj.xiaohuangshu.user.biz.domain.dataobject.mapper")
 @EnableFeignClients(basePackages = "com.lhj.xiaohuangshu")
 public class XiaohuangshuUserBizApplication {
 

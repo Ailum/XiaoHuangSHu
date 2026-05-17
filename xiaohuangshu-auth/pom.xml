@@ -193,6 +193,11 @@
       <artifactId>lhj-spring-boot-starter-biz-operationlog</artifactId>
       <version>0.0.1-SNAPSHOT</version>
     </dependency>
+    <dependency>
+      <groupId>com.lhj.xiaohuangshu.user.biz</groupId>
+      <artifactId>xiaohuangshu-user-biz</artifactId>
+      <version>0.0.1-SNAPSHOT</version>
+    </dependency>
     <!--Mybatis-->
     <dependency>
       <groupId>org.mybatis.spring.boot</groupId>

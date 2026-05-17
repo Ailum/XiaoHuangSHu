@@ -1,4 +1,4 @@
-package com.lhj.xiaohuangshu.user.biz.domain.mapper;
+package com.lhj.xiaohuangshu.user.biz.domain.dataobject.mapper;
 
 import com.lhj.xiaohuangshu.user.biz.domain.dataobject.UserDO;
 
@@ -10,6 +10,8 @@ public interface UserDOMapper {
     int insertSelective(UserDO row);
 
     UserDO selectByPrimaryKey(Long id);
+
+    UserDO selectByPhone(String phone);
 
     int updateByPrimaryKeySelective(UserDO row);
 

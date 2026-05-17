@@ -25,7 +25,7 @@ public class AliyunSmsClientConfig {
             config.endpoint = "dypnsapi.aliyuncs.com";
             return new com.aliyun.dypnsapi20170525.Client(config);
         } catch (Exception e) {
-            log.error("初始化阿里云短信发送客户端错误: ", e);
+            log.error("鍒濆鍖栭樋閲屼簯鐭俊鍙戦€佸鎴风閿欒: ", e);
             return null;
         }
     }

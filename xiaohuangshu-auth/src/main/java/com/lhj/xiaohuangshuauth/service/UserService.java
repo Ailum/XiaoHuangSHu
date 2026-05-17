@@ -11,7 +11,7 @@ public interface UserService {
     Response<?> logout();
 
     /**
-     * 修改密码
+     * 淇敼瀵嗙爜
      * @param updatePasswordReqVO
      * @return
      */

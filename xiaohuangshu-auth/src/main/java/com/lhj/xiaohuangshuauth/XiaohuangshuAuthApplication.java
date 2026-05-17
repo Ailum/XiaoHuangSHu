@@ -5,7 +5,7 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
-@MapperScan("com.lhj.xiaohuangshuauth.domain.mapper")
+@MapperScan("com.lhj.xiaohuangshu.user.biz.domain.dataobject.mapper")
 public class XiaohuangshuAuthApplication {
 
     public static void main(String[] args) {

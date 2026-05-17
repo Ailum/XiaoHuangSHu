@@ -1,6 +1,6 @@
-package com.lhj.xiaohuangshuauth.domain.mapper;
+package com.lhj.xiaohuangshu.user.biz.domain.dataobject.mapper;
 
-import com.lhj.xiaohuangshuauth.domain.dataobject.RolePermissionDO;
+import com.lhj.xiaohuangshu.user.biz.domain.dataobject.RolePermissionDO;
 import org.apache.ibatis.annotations.Param;
 
 import java.util.List;

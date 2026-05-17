@@ -1,22 +1,21 @@
-package com.lhj.xiaohuangshuauth.runner;
+package com.lhj.xiaohuangshu.user.biz.runner;
 
 
 import cn.hutool.core.collection.CollUtil;
 import com.google.common.collect.Lists;
 import com.google.common.collect.Maps;
 import com.lhj.framework.common.util.JsonUtils;
-import com.lhj.xiaohuangshuauth.constant.RedisKeyConstants;
-import com.lhj.xiaohuangshuauth.domain.dataobject.PermissionDO;
-import com.lhj.xiaohuangshuauth.domain.dataobject.RoleDO;
-import com.lhj.xiaohuangshuauth.domain.dataobject.RolePermissionDO;
-import com.lhj.xiaohuangshuauth.domain.mapper.PermissionDOMapper;
-import com.lhj.xiaohuangshuauth.domain.mapper.RoleDOMapper;
-import com.lhj.xiaohuangshuauth.domain.mapper.RolePermissionDOMapper;
+import com.lhj.xiaohuangshu.user.biz.constant.RedisKeyConstants;
+import com.lhj.xiaohuangshu.user.biz.domain.dataobject.PermissionDO;
+import com.lhj.xiaohuangshu.user.biz.domain.dataobject.RoleDO;
+import com.lhj.xiaohuangshu.user.biz.domain.dataobject.RolePermissionDO;
+import com.lhj.xiaohuangshu.user.biz.domain.dataobject.mapper.PermissionDOMapper;
+import com.lhj.xiaohuangshu.user.biz.domain.dataobject.mapper.RoleDOMapper;
+import com.lhj.xiaohuangshu.user.biz.domain.dataobject.mapper.RolePermissionDOMapper;
 import jakarta.annotation.Resource;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.boot.ApplicationArguments;
 import org.springframework.boot.ApplicationRunner;
-import org.springframework.boot.CommandLineRunner;
 import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.stereotype.Component;
 
@@ -39,60 +38,60 @@ public class PushRolePermissions2RedisRunner implements ApplicationRunner {
     @Resource
     private RolePermissionDOMapper rolePermissionDOMapper;
 
-    //权限同步标记Key
+    //鏉冮檺鍚屾鏍囪Key
     private static final String PUSH_PERMISSION_FLAG = "push.permission.flag";
 
     @Override
     public void run(ApplicationArguments args) {
-        log.info("==> 服务启动，开始同步角色权限数据到 Redis 中...");
+        log.info("==> 鏈嶅姟鍚姩锛屽紑濮嬪悓姝ヨ鑹叉潈闄愭暟鎹埌 Redis 涓?..");
 
         try {
-            // 是否能够同步数据: 原子操作，只有在键 PUSH_PERMISSION_FLAG 不存在时，才会设置该键的值为 "1"，并设置过期时间为 1 天
+            // 鏄惁鑳藉鍚屾鏁版嵁: 鍘熷瓙鎿嶄綔锛屽彧鏈夊湪閿?PUSH_PERMISSION_FLAG 涓嶅瓨鍦ㄦ椂锛屾墠浼氳缃閿殑鍊间负 "1"锛屽苟璁剧疆杩囨湡鏃堕棿涓?1 澶?
             boolean canPushed = redisTemplate.opsForValue().setIfAbsent(PUSH_PERMISSION_FLAG, "1", 1, TimeUnit.DAYS);
 
-            // 如果无法同步权限数据
+            // 濡傛灉鏃犳硶鍚屾鏉冮檺鏁版嵁
             if (!canPushed) {
-                log.warn("==> 角色权限数据已经同步至 Redis 中，不再同步...");
+                log.warn("==> 瑙掕壊鏉冮檺鏁版嵁宸茬粡鍚屾鑷?Redis 涓紝涓嶅啀鍚屾...");
                 return;
             }
 
-            // 查询出所有角色
+            // 鏌ヨ鍑烘墍鏈夎鑹?
             List<RoleDO> roleDOS = roleDOMapper.selectEnabledList();
 
             if (CollUtil.isNotEmpty(roleDOS)) {
-                // 拿到所有角色的 ID
+                // 鎷垮埌鎵€鏈夎鑹茬殑 ID
                 List<Long> roleIds = roleDOS.stream().map(RoleDO::getId).toList();
 
-                // 根据角色 ID, 批量查询出所有角色对应的权限
+                // 鏍规嵁瑙掕壊 ID, 鎵归噺鏌ヨ鍑烘墍鏈夎鑹插搴旂殑鏉冮檺
                 List<RolePermissionDO> rolePermissionDOS = rolePermissionDOMapper.selectByRoleIds(roleIds);
-                // 按角色 ID 分组, 每个角色 ID 对应多个权限 ID
+                // 鎸夎鑹?ID 鍒嗙粍, 姣忎釜瑙掕壊 ID 瀵瑰簲澶氫釜鏉冮檺 ID
                 Map<Long, List<Long>> roleIdPermissionIdsMap = rolePermissionDOS.stream().collect(
                         Collectors.groupingBy(RolePermissionDO::getRoleId,
                                 Collectors.mapping(RolePermissionDO::getPermissionId, Collectors.toList()))
                 );
 
-                // 查询 APP 端所有被启用的权限
+                // 鏌ヨ APP 绔墍鏈夎鍚敤鐨勬潈闄?
                 List<PermissionDO> permissionDOS = permissionDOMapper.selectAppEnabledList();
-                // 权限 ID - 权限 DO
+                // 鏉冮檺 ID - 鏉冮檺 DO
                 Map<Long, PermissionDO> permissionIdDOMap = permissionDOS.stream().collect(
                         Collectors.toMap(PermissionDO::getId, permissionDO -> permissionDO)
                 );
 
-                // 组织 角色ID-权限 关系
+                // 缁勭粐 瑙掕壊ID-鏉冮檺 鍏崇郴
                 Map<String, List<String>> roleIdPermissionDOMap = Maps.newHashMap();
 
-                // 循环所有角色
+                // 寰幆鎵€鏈夎鑹?
                 roleDOS.forEach(roleDO -> {
-                    // 当前角色 ID
+                    // 褰撳墠瑙掕壊 ID
                     Long roleId = roleDO.getId();
-                    //当前角色roleKey
+                    //褰撳墠瑙掕壊roleKey
                     String roleKey = roleDO.getRoleKey();
-                    // 当前角色 ID 对应的权限 ID 集合
+                    // 褰撳墠瑙掕壊 ID 瀵瑰簲鐨勬潈闄?ID 闆嗗悎
                     List<Long> permissionIds = roleIdPermissionIdsMap.get(roleId);
                     if (CollUtil.isNotEmpty(permissionIds)) {
                         List<String> perDOS = Lists.newArrayList();
                         permissionIds.forEach(permissionId -> {
-                            // 根据权限 ID 获取具体的权限 DO 对象
+                            // 鏍规嵁鏉冮檺 ID 鑾峰彇鍏蜂綋鐨勬潈闄?DO 瀵硅薄
                             PermissionDO permissionDO = permissionIdDOMap.get(permissionId);
                             if (Objects.nonNull(permissionDO)) {
                                 perDOS.add(permissionDO.getPermissionKey());
@@ -102,16 +101,16 @@ public class PushRolePermissions2RedisRunner implements ApplicationRunner {
                     }
                 });
 
-                // 同步至 Redis 中，方便后续网关查询鉴权使用
+                // 鍚屾鑷?Redis 涓紝鏂逛究鍚庣画缃戝叧鏌ヨ閴存潈浣跨敤
                 roleIdPermissionDOMap.forEach((roleKey, permissions) -> {
                     String key = RedisKeyConstants.buildRolePermissionKey(roleKey);
                     redisTemplate.opsForValue().set(key, JsonUtils.toJsonString(permissions));
                 });
             }
 
-            log.info("==> 服务启动，成功同步角色权限数据到 Redis 中...");
+            log.info("==> 鏈嶅姟鍚姩锛屾垚鍔熷悓姝ヨ鑹叉潈闄愭暟鎹埌 Redis 涓?..");
         } catch (Exception e) {
-            log.error("==> 同步角色权限数据到 Redis 中失败: ", e);
+            log.error("==> 鍚屾瑙掕壊鏉冮檺鏁版嵁鍒?Redis 涓け璐? ", e);
         }
 
     }

@@ -1,54 +1,55 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.lhj.xiaohuangshuauth.domain.mapper.RolePermissionDOMapper">
-  <resultMap id="BaseResultMap" type="com.lhj.xiaohuangshuauth.domain.dataobject.RolePermissionDO">
+<mapper namespace="com.lhj.xiaohuangshu.user.biz.domain.dataobject.mapper.UserRoleDOMapper">
+  <resultMap id="BaseResultMap" type="com.lhj.xiaohuangshu.user.biz.domain.dataobject.UserRoleDO">
     <id column="id" jdbcType="BIGINT" property="id" />
+    <result column="user_id" jdbcType="BIGINT" property="userId" />
     <result column="role_id" jdbcType="BIGINT" property="roleId" />
-    <result column="permission_id" jdbcType="BIGINT" property="permissionId" />
     <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
     <result column="update_time" jdbcType="TIMESTAMP" property="updateTime" />
     <result column="is_deleted" jdbcType="BIT" property="isDeleted" />
   </resultMap>
   <sql id="Base_Column_List">
-    id, role_id, permission_id, create_time, update_time, is_deleted
+    id, user_id, role_id, create_time, update_time, is_deleted
   </sql>
   <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
     select 
     <include refid="Base_Column_List" />
-    from t_role_permission_rel
+    from t_user_role_rel
     where id = #{id,jdbcType=BIGINT}
   </select>
-    <select id="selectByRoleIds" resultMap="BaseResultMap">
-        select role_id, permission_id
-        from t_role_permission_rel
-        where role_id in
-        <foreach collection="roleIds" item="roleId" separator="," open="(" close=")">
-            #{roleId}
-        </foreach>
-    </select>
+  <select id="selectByUserIdAndRoleId" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from t_user_role_rel
+    where user_id = #{param1,jdbcType=BIGINT}
+      and role_id = #{param2,jdbcType=BIGINT}
+      and is_deleted = 0
+    limit 1
+  </select>
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
-    delete from t_role_permission_rel
+    delete from t_user_role_rel
     where id = #{id,jdbcType=BIGINT}
   </delete>
-  <insert id="insert" parameterType="com.lhj.xiaohuangshuauth.domain.dataobject.RolePermissionDO">
-    insert into t_role_permission_rel (id, role_id, permission_id, 
+  <insert id="insert" parameterType="com.lhj.xiaohuangshu.user.biz.domain.dataobject.UserRoleDO">
+    insert into t_user_role_rel (id, user_id, role_id, 
       create_time, update_time, is_deleted
       )
-    values (#{id,jdbcType=BIGINT}, #{roleId,jdbcType=BIGINT}, #{permissionId,jdbcType=BIGINT}, 
+    values (#{id,jdbcType=BIGINT}, #{userId,jdbcType=BIGINT}, #{roleId,jdbcType=BIGINT}, 
       #{createTime,jdbcType=TIMESTAMP}, #{updateTime,jdbcType=TIMESTAMP}, #{isDeleted,jdbcType=BIT}
       )
   </insert>
-  <insert id="insertSelective" parameterType="com.lhj.xiaohuangshuauth.domain.dataobject.RolePermissionDO">
-    insert into t_role_permission_rel
+  <insert id="insertSelective" parameterType="com.lhj.xiaohuangshu.user.biz.domain.dataobject.UserRoleDO">
+    insert into t_user_role_rel
     <trim prefix="(" suffix=")" suffixOverrides=",">
       <if test="id != null">
         id,
       </if>
+      <if test="userId != null">
+        user_id,
+      </if>
       <if test="roleId != null">
         role_id,
-      </if>
-      <if test="permissionId != null">
-        permission_id,
       </if>
       <if test="createTime != null">
         create_time,
@@ -64,11 +65,11 @@
       <if test="id != null">
         #{id,jdbcType=BIGINT},
       </if>
+      <if test="userId != null">
+        #{userId,jdbcType=BIGINT},
+      </if>
       <if test="roleId != null">
         #{roleId,jdbcType=BIGINT},
-      </if>
-      <if test="permissionId != null">
-        #{permissionId,jdbcType=BIGINT},
       </if>
       <if test="createTime != null">
         #{createTime,jdbcType=TIMESTAMP},
@@ -81,14 +82,14 @@
       </if>
     </trim>
   </insert>
-  <update id="updateByPrimaryKeySelective" parameterType="com.lhj.xiaohuangshuauth.domain.dataobject.RolePermissionDO">
-    update t_role_permission_rel
+  <update id="updateByPrimaryKeySelective" parameterType="com.lhj.xiaohuangshu.user.biz.domain.dataobject.UserRoleDO">
+    update t_user_role_rel
     <set>
+      <if test="userId != null">
+        user_id = #{userId,jdbcType=BIGINT},
+      </if>
       <if test="roleId != null">
         role_id = #{roleId,jdbcType=BIGINT},
-      </if>
-      <if test="permissionId != null">
-        permission_id = #{permissionId,jdbcType=BIGINT},
       </if>
       <if test="createTime != null">
         create_time = #{createTime,jdbcType=TIMESTAMP},
@@ -102,10 +103,10 @@
     </set>
     where id = #{id,jdbcType=BIGINT}
   </update>
-  <update id="updateByPrimaryKey" parameterType="com.lhj.xiaohuangshuauth.domain.dataobject.RolePermissionDO">
-    update t_role_permission_rel
-    set role_id = #{roleId,jdbcType=BIGINT},
-      permission_id = #{permissionId,jdbcType=BIGINT},
+  <update id="updateByPrimaryKey" parameterType="com.lhj.xiaohuangshu.user.biz.domain.dataobject.UserRoleDO">
+    update t_user_role_rel
+    set user_id = #{userId,jdbcType=BIGINT},
+      role_id = #{roleId,jdbcType=BIGINT},
       create_time = #{createTime,jdbcType=TIMESTAMP},
       update_time = #{updateTime,jdbcType=TIMESTAMP},
       is_deleted = #{isDeleted,jdbcType=BIT}

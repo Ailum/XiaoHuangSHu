@@ -19,20 +19,20 @@ public class UserController {
     private UserService userService;
 
     @PostMapping("/login")
-    @ApiOperationLog(description = "用户登录/注册")
+    @ApiOperationLog(description = "鐢ㄦ埛鐧诲綍/娉ㄥ唽")
     public Response<String> loginAndRegister(@Validated @RequestBody UserLoginReqVO userLoginReqVO) {
         return userService.loginAndRegister(userLoginReqVO);
     }
 
     @PostMapping("/logout")
-    @ApiOperationLog(description = "账号登出")
+    @ApiOperationLog(description = "璐﹀彿鐧诲嚭")
     public Response<?> logout() {
-        //todo 账号退出登录逻辑待实现
+        //todo 璐﹀彿閫€鍑虹櫥褰曢€昏緫寰呭疄鐜?
       return userService.logout();
     }
 
     @PostMapping("/password/update")
-    @ApiOperationLog(description = "修改密码")
+    @ApiOperationLog(description = "淇敼瀵嗙爜")
     public Response<?> updatePassword(@Validated @RequestBody UpdatePasswordReqVO updatePasswordReqVO) {
         return userService.updatePassword(updatePasswordReqVO);
     }

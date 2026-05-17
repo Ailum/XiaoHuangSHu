@@ -1,6 +1,6 @@
-package com.lhj.xiaohuangshuauth.domain.mapper;
+package com.lhj.xiaohuangshu.user.biz.domain.dataobject.mapper;
 
-import com.lhj.xiaohuangshuauth.domain.dataobject.PermissionDO;
+import com.lhj.xiaohuangshu.user.biz.domain.dataobject.PermissionDO;
 
 import java.util.List;
 

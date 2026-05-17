@@ -1,4 +1,4 @@
-package com.lhj.xiaohuangshuauth.domain.dataobject;
+package com.lhj.xiaohuangshu.user.biz.domain.dataobject;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -6,28 +6,23 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import java.time.LocalDateTime;
-import java.util.Date;
+
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder
-public class RoleDO {
+public class UserRoleDO {
     private Long id;
 
-    private String roleName;
+    private Long userId;
 
-    private String roleKey;
-
-    private Integer status;
-
-    private Integer sort;
-
-    private String remark;
+    private Long roleId;
 
     private LocalDateTime createTime;
 
     private LocalDateTime updateTime;
 
     private Boolean isDeleted;
+
 
 }

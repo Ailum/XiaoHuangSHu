@@ -2,7 +2,7 @@ package com.lhj.xiaohuangshuauth.alarm;
 
 public interface AlarmInterface {
     /**
-     * 发送告警信息
+     * 鍙戦€佸憡璀︿俊鎭?
      *
      * @param message
      * @return

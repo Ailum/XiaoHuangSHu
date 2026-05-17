@@ -7,7 +7,7 @@ public interface UserService {
 
 
     /**
-     * 更新用户信息
+     * 鏇存柊鐢ㄦ埛淇℃伅
      *
      * @param updateUserInfoReqVO
      * @return

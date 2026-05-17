@@ -46,7 +46,7 @@ public class VerificationCodeServiceImpl implements VerificationCodeService {
         log.info("==> phone: {}, verification code: {}", phone, verificationCode);
 
         threadPoolTaskExecutor.submit(() -> {
-            String signName = "速通互联验证码";
+            String signName = "閫熼€氫簰鑱旈獙璇佺爜";
             String templateCode = "100001";
             String templateParam = String.format("{\"code\":\"%s\",\"min\":\"3\"}", verificationCode);
             aliyunSmsHelper.sendMessage(signName, templateCode, phone, templateParam);

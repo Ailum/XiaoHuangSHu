@@ -103,7 +103,7 @@ public class PushRolePermissions2RedisRunner implements ApplicationRunner {
 
                 // 鍚屾鑷?Redis 涓紝鏂逛究鍚庣画缃戝叧鏌ヨ閴存潈浣跨敤
                 roleIdPermissionDOMap.forEach((roleKey, permissions) -> {
-                    String key = RedisKeyConstants.buildRolePermissionKey(roleKey);
+                    String key = RedisKeyConstants.buildRolePermissionsKey(roleKey);
                     redisTemplate.opsForValue().set(key, JsonUtils.toJsonString(permissions));
                 });
             }

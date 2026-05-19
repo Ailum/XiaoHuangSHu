@@ -1,4 +1,4 @@
-package com.lhj.xiaohuangshuauth.model.vo.veriticationcode.user;
+package com.lhj.xiaohuangshu.user.dto.req;
 
 import jakarta.validation.constraints.NotBlank;
 import lombok.AllArgsConstructor;
@@ -10,11 +10,11 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder
-public class UpdatePasswordReqVO {
+public class UpdateUserPasswordReqDTO {
 
     /**
-     * 新密码
+     * 加密后的密码
      */
-    @NotBlank(message = "新密码不能为空")
-    private String newPassword;
+    @NotBlank(message = "密码不能为空")
+    private String encodePassword;
 }

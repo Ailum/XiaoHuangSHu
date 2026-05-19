@@ -14,14 +14,26 @@ import lombok.NoArgsConstructor;
 @Builder
 public class UserLoginReqVO {
 
+    /**
+     * 手机号
+     */
     @NotBlank(message = "手机号不能为空")
     @PhoneNumber
     private String phone;
 
+    /**
+     * 验证码登录时填写
+     */
     private String code;
 
+    /**
+     * 密码登录时填写
+     */
     private String password;
 
+    /**
+     * 登录类型：1-验证码登录，2-密码登录
+     */
     @NotNull(message = "登录类型不能为空")
     private Integer type;
 }

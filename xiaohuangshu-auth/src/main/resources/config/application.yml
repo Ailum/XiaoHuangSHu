@@ -23,8 +23,6 @@ spring:
         namespace: xiaohuangshu
         server-addr: 127.0.0.1:8848
 
-mybatis:
-  mapper-locations: classpath:/mapper/**/*.xml
 
 sa-token:
   token-name: Authorization #token名称 也是cookie名称

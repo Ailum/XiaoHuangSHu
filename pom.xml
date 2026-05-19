@@ -261,6 +261,11 @@
           <version>3.8.0</version>
       </dependency>
 
+      <dependency>
+          <groupId>com.lhj.xiaohuangshu.user.api</groupId>
+          <artifactId>xiaohuangshu-user-api</artifactId>
+          <version>0.0.1-SNAPSHOT</version>
+      </dependency>
   </dependencies>
 </dependencyManagement>
 

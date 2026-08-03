@@ -13,7 +13,19 @@
     <file url="file://$PROJECT_DIR$/src/main/resources" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/xianghuangshu-auth/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/xiaohuangshu-auth/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/xiaohuangshu-distributed-id-generator/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/xiaohuangshu-distributed-id-generator/src/main/resources" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/xiaohuangshu-distributed-id-generator/xiaohuangshu-distributed-id-generator-api/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/xiaohuangshu-distributed-id-generator/xiaohuangshu-distributed-id-generator-biz/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/xiaohuangshu-gateway/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/xiaohuangshu-kv/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/xiaohuangshu-kv/src/main/resources" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/xiaohuangshu-kv/xiaohuangshu-kv-api/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/xiaohuangshu-kv/xiaohuangshu-kv-biz/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/xiaohuangshu-note/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/xiaohuangshu-note/src/main/resources" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/xiaohuangshu-note/xiaohuangshu-note-api/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/xiaohuangshu-note/xiaohuangshu-note-biz/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/xiaohuangshu-oss/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/xiaohuangshu-oss/src/main/resources" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/xiaohuangshu-oss/xiaohuangshu-oss-api/src/main/java" charset="UTF-8" />

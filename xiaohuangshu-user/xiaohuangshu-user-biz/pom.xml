@@ -127,6 +127,12 @@
             <groupId>com.lhj.xiaohuangshu.user.api</groupId>
             <artifactId>xiaohuangshu-user-api</artifactId>
         </dependency>
+
+        <dependency>
+            <groupId>com.lhj.xiaohuangshu.distributed.id.generator</groupId>
+            <artifactId>xiaohuangshu-distributed-id-generator-api</artifactId>
+            <version>0.0.1-SNAPSHOT</version>
+        </dependency>
     </dependencies>
 
     <build>

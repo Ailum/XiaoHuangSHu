@@ -19,6 +19,7 @@ import com.lhj.xiaohuangshu.user.biz.domain.dataobject.mapper.UserRoleDOMapper;
 import com.lhj.xiaohuangshu.user.biz.enums.ResponseCodeEnum;
 import com.lhj.xiaohuangshu.user.biz.enums.SexEnum;
 import com.lhj.xiaohuangshu.user.biz.model.vo.UpdateUserInfoReqVO;
+import com.lhj.xiaohuangshu.user.biz.rpc.DistributedIdGeneratorRpcService;
 import com.lhj.xiaohuangshu.user.biz.rpc.OssRpcService;
 import com.lhj.xiaohuangshu.user.biz.service.UserService;
 import com.lhj.xiaohuangshu.user.dto.req.FindUserByPhoneReqDTO;
@@ -58,6 +59,9 @@ public class UserServiceImpl implements UserService {
 
     @Resource
     private RedisTemplate<String, Object> redisTemplate;
+
+    @Resource
+    private DistributedIdGeneratorRpcService distributedIdGeneratorRpcService;
 
     @Override
     public Response<?> updateUserInfo(UpdateUserInfoReqVO updateUserInfoReqVO) {
@@ -146,14 +150,15 @@ public class UserServiceImpl implements UserService {
         if (existsUser != null) {
             return Response.success(existsUser.getId());
         }
+        //RPC：调用分布式ID生成服务生成小皇书ID
+        String xiaohuangshuId = distributedIdGeneratorRpcService.getXiaohuangshuId();
 
-        Long xiaohuangshuId = redisTemplate.opsForValue().increment(RedisKeyConstants.XIAOHUANGSHU_ID_GENERATOR_KEY);
         LocalDateTime now = LocalDateTime.now();
 
         UserDO userDO = UserDO.builder()
                 .phone(phone)
                 .xiaohuangshuId(String.valueOf(xiaohuangshuId))
-                .nickname("小红薯" + xiaohuangshuId)
+                .nickname("小皇帝" + xiaohuangshuId)
                 .status(StatusEnum.ENABLE.getValue().byteValue())
                 .createTime(now)
                 .updateTime(now)

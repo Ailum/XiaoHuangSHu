@@ -4,6 +4,7 @@ import com.lhj.framework.common.response.Response;
 import com.lhj.xiaohuangshu.kv.constant.ApiConstants;
 import com.lhj.xiaohuangshu.kv.dto.req.AddNoteContentReqDTO;
 import com.lhj.xiaohuangshu.kv.dto.req.DeleteNoteContentReqDTO;
+import com.lhj.xiaohuangshu.kv.dto.req.FindnoteContentReqDTO;
 import com.lhj.xiaohuangshu.kv.dto.rsp.FindNoteContentRspDTO;
 import org.springframework.cloud.openfeign.FeignClient;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -18,7 +19,7 @@ public interface KeyValueFeignApi {
     Response<?> addNoteContent(@RequestBody AddNoteContentReqDTO addNoteContentReqDTO);
 
     @PostMapping(value = PREFIX + "/note/content/find")
-    Response<FindNoteContentRspDTO> findNoteContent(@RequestBody FindNoteContentRspDTO findNoteContentReqDTO);
+    Response<FindNoteContentRspDTO> findNoteContent(@RequestBody FindnoteContentReqDTO findnoteContentReqDTO);
 
     @PostMapping(value = PREFIX + "/note/content/delete")
     Response<?> deleteNoteContent(@RequestBody DeleteNoteContentReqDTO deleteNoteContentReqDTO);

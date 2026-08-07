@@ -120,6 +120,11 @@
             <groupId>org.apache.commons</groupId>
             <artifactId>commons-lang3</artifactId>
         </dependency>
+
+        <dependency>
+            <groupId>com.lhj.xiaohuangshu.user.api</groupId>
+            <artifactId>xiaohuangshu-user-api</artifactId>
+        </dependency>
     </dependencies>
 
     <build>

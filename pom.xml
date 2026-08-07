@@ -69,6 +69,7 @@
       <activation.version>1.1.1</activation.version>
       <jaxb-runtime.version>2.3.3</jaxb-runtime.version>
       <feign-form.version>3.8.0</feign-form.version>
+      <caffeine.version>3.2.4</caffeine.version>
   </properties>
 
 <!--统一依赖管理-->
@@ -281,6 +282,13 @@
           <artifactId>xiaohuangshu-distributed-id-generator</artifactId>
           <version>0.0.1-SNAPSHOT</version>
       </dependency>
+
+<!--      Caffeine本地缓存-->
+      <dependency>
+          <groupId>com.github.ben-manes-caffeine</groupId>
+          <artifactId>caffeine</artifactId>
+          <version>${caffeine.version}</version>
+      </dependency>
   </dependencies>
 </dependencyManagement>
 
@@ -335,6 +343,12 @@
                         <groupId>mysql</groupId>
                         <artifactId>mysql-connector-java</artifactId>
                         <version>8.0.25</version>
+                    </dependency>
+
+                    <dependency>
+                        <groupId>org.apache.commons</groupId>
+                        <artifactId>commons-lang3</artifactId>
+                        <version>${commons-lang3.version}</version>
                     </dependency>
                 </dependencies>
             </plugin>

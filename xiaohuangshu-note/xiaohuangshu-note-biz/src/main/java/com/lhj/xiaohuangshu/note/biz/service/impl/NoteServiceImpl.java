@@ -9,6 +9,7 @@ import com.lhj.framework.biz.context.holder.LoginUserContextHolder;
 import com.lhj.framework.common.exception.BizException;
 import com.lhj.framework.common.response.Response;
 import com.lhj.framework.common.util.JsonUtils;
+import com.lhj.xiaohuangshu.note.biz.constant.MQConstants;
 import com.lhj.xiaohuangshu.note.biz.constant.RedisKeyConstants;
 import com.lhj.xiaohuangshu.note.biz.domain.dataobject.NoteDO;
 import com.lhj.xiaohuangshu.note.biz.domain.dataobject.TopicDO;
@@ -31,6 +32,7 @@ import jakarta.annotation.Resource;
 import lombok.SneakyThrows;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang3.StringUtils;
+import org.apache.rocketmq.spring.core.RocketMQTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.scheduling.concurrent.ThreadPoolTaskExecutor;
@@ -65,6 +67,8 @@ public class NoteServiceImpl implements NoteService {
     private RedisTemplate<String,String> redisTemplate;
     @Autowired
     private ThreadPoolTaskExecutor threadPoolTaskExecutor;
+    @Resource
+    private RocketMQTemplate rocketMQTemplate;
 
 
     /**
@@ -327,7 +331,7 @@ public class NoteServiceImpl implements NoteService {
     @Transactional(rollbackFor = Exception.class)
     public Response<?> updateNote(UpdateNoteReqVO updateNoteReqVO) {
         //笔记ID
-        Long noeId = updateNoteReqVO.getId();
+        Long noteId = updateNoteReqVO.getId();
         //笔记类型
         Integer type = updateNoteReqVO.getType();
 
@@ -373,6 +377,55 @@ public class NoteServiceImpl implements NoteService {
         if (Objects.nonNull(topicId) && StringUtils.isBlank(topicName)) {
             throw new BizException(ResponseCodeEnum.PARAM_NOT_VALID);
         }
+
+        //更新笔记元数据表 t_note
+        String content = updateNoteReqVO.getContent();
+        NoteDO noteDO =  NoteDO.builder()
+                .id(noteId)
+                .isContentEmpty(StringUtils.isBlank(content))
+                .imgUris(imgUris)
+                .title(updateNoteReqVO.getTitle())
+                .topicId(updateNoteReqVO.getTopicId())
+                .topicName(topicName)
+                .type(type)
+                .updateTime(LocalDateTime.now())
+                .videoUri(videoUri)
+                .build();
+
+        noteDOMapper.updateByPrimaryKey(noteDO);
+
+        //删除 Redis 缓存
+        String noteDetailRedisKey = RedisKeyConstants.buildNoteDetailKey(noteId);
+        redisTemplate.delete(noteDetailRedisKey);
+//
+//        //删除本地缓存
+//        LOCAL_CACHE.invalidate(noteId);
+
+        //同步发送广播模式MQ，将所有实例中的本地缓存都删除掉
+        rocketMQTemplate.syncSend(MQConstants.TOPIC_DELETE_NOTE_LOCAL_CACHE,noteId);
+        log.info("===========>MQ:删除笔记本本地缓存发送成功...");
+
+
+
+        //笔记内容更新
+        //查询此篇笔记内容对应的 UUID
+        NoteDO noteDO1 = noteDOMapper.selectByPrimaryKey(noteId);
+        String contentUuid = noteDO1.getContentUuid();
+
+        //笔记内容是否更新成功
+        boolean isUpdateContentSuccess = false;
+        if(StringUtils.isBlank(content)){
+            //若笔记内容为空，则删除 k-v 存储
+            isUpdateContentSuccess = keyValueRpcService.deleteNoteContent(contentUuid);
+        } else {
+            //若将无内容的笔记，更新为了有内容的笔记，需要重新生成 UUID
+            contentUuid = StringUtils.isBlank(contentUuid) ? UUID.randomUUID().toString() : contentUuid;
+            //调用 k-v 更新短文本
+            isUpdateContentSuccess = keyValueRpcService.saveNoteContent(contentUuid, content);}
+        // 如果更新失败，抛出业务异常，回滚事务
+        if(!isUpdateContentSuccess){
+                throw new BizException(ResponseCodeEnum.NOTE_UPDATE_FAIL);
+            }
 
         return Response.success();
     }
